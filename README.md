@@ -4,8 +4,8 @@
 This repository holds code for several Terraform projects that I did.
 
 ## Built with
-AWS
-Terraform
+  * AWS
+  * Terraform
 
 ## List of Projects
 Here is the list of projects:
@@ -20,3 +20,6 @@ Don't forget to give this repo a start! Thanks again!
 ## Contact
 Nicole Ketchiozo -[email](nketchiozo@gmail.com)
 Project Link: [https://github.com/Dorinetk/terraform-projects/](https://github.com/Dorinetk/terraform-projects/)
+
+## Aknowledgments
+The following resources were very useful for the completion of these projects:
