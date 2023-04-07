@@ -7,8 +7,10 @@ resource "random_integer" "random" {
 
 # Creates a bucket using S3 m o dule
 module "s3_bucket" {
-  source = "./modules/s3/"
 
+  source = "./modules/s3/"
+  
+  #bucket_name = "bootcamp30-${random_integer.random.id}-nicole"
   bucket_name = local.bucket_name.random_integer.random.id.local.student_name
 
   tags = {
