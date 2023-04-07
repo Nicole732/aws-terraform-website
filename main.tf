@@ -9,9 +9,9 @@ resource "random_integer" "random" {
 module "s3_bucket" {
 
   source = "./modules/s3/"
-  
+
   #bucket_name = "bootcamp30-${random_integer.random.id}-nicole"
-  bucket_name = local.bucket_name.random_integer.random.id.local.student_name
+  bucket_name = "${var.bootcamp_session}.random_integer.random.id-${var.student_name}"
 
   tags = {
     Environment = local.Environment
