@@ -1,4 +1,5 @@
 # generate a random number to have a unique bucket
+#bucket name
 resource "random_integer" "random" {
   min = 3
   max = 6
@@ -6,13 +7,13 @@ resource "random_integer" "random" {
 
 # Creates a bucket using S3 m o dule
 module "s3_bucket" {
-    source = "./modules/s3/"
-    
-    bucket_name = "bootcamp30-${random_integer.random.id}-nicole"
+  source = "./modules/s3/"
 
-    tags = {
-    Terraform   = "true"
-    Environment = "dev"
+  bucket_name = local.bucket_name.random_integer.random.id.local.student_name
+
+  tags = {
+    Environment = local.Environment
+    Owner       = local.Owner
   }
 
 }
