@@ -4,10 +4,10 @@
 #creates s3 bucket
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "backend-state-041024"
- 
+
   # Prevent accidental deletion of this S3 bucket
   lifecycle {
-    prevent_destroy =  true #change to false if need to destroy
+    prevent_destroy = true #change to false if need to destroy
   }
 }
 
@@ -49,17 +49,17 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
 #configure the remote backend
 terraform {
-    backend "s3" {
-       bucket = "backend-state-041024"
-       key = "dev/terraform.tfstate"
-       region = "us-east-1"
-       dynamodb_table = "backend_state_locks"
-       encrypt = true
+  backend "s3" {
+    bucket         = "backend-state-041024"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "backend_state_locks"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
     }
-    required_providers {
-      aws = {
-        source = "hashicorp/aws"
-        version = "~> 3.0"
-      }
-    }
+  }
 }

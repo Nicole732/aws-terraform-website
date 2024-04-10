@@ -19,8 +19,8 @@ resource "aws_s3_bucket_ownership_controls" "bucket_owner" {
 
 resource "aws_s3_bucket_acl" "s3_bucket_acl" {
   depends_on = [aws_s3_bucket_ownership_controls.bucket_owner]
-  bucket = aws_s3_bucket.s3_bucket.id
-  acl    = "private"
+  bucket     = aws_s3_bucket.s3_bucket.id
+  acl        = "private"
 }
 
 # Enable SSE-KMS Server Side Encryption
