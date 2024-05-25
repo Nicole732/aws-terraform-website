@@ -46,21 +46,22 @@ resource "aws_dynamodb_table" "terraform_locks" {
 }
 
 ##### Step 2 #### 
-#configure the remote backend
-#bucket was created in step 1
-#comment out this step and run step1 to create the bucket and dynamodb table
-#terraform {
-#  backend "s3" {
-#    bucket         = "backend-state-041024"
-#    key            = "dev/terraform.tfstate"
-#    region         = "us-east-1"
-#    dynamodb_table = "backend_state_locks"
-#    encrypt        = true
-#  }
-#  required_providers {
-#    aws = {
-#      source  = "hashicorp/aws"
-#      version = "~> 5.0"
-#    }
-#  }
-#}
+#configure the remote backend with s3 bucket was created in step 1
+#comment out this step and run step1 to create the bucket and dynamodb table first
+#backend block doesn't support depends_on meta argument
+
+terraform {
+  backend "s3" {
+    bucket         = "backend-state-041024"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "backend_state_locks"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
