@@ -1,4 +1,5 @@
 provider "aws" {
-  shared_credentials_file = "~/.aws/credentials"
-  region                  = var.aws_region
+  #define profile with "aws configure --profile landmark" and select it using export AWS_PROFILE=landmark
+  profile = "landmark" 
+  region  = var.aws_region
 }

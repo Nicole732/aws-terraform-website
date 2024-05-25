@@ -1,7 +1,4 @@
-#### Step 1 #####
-#creates s3 file to store backend 
-#can't use s3 module bc variables not allowed in backend configuration
-
+#### Step 1 ##### 
 #creates s3 bucket
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "backend-state-041024"
@@ -48,9 +45,11 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 
-#####3 Step 2 #### 
-#configure the remote backend
-#bucket was created in step 1
+##### Step 2 #### 
+#configure the remote backend with s3 bucket was created in step 1
+#comment out this step and run step1 to create the bucket and dynamodb table first
+#backend block doesn't support depends_on meta argument
+
 terraform {
   backend "s3" {
     bucket         = "backend-state-041024"
@@ -58,10 +57,6 @@ terraform {
     region         = "us-east-1"
     dynamodb_table = "backend_state_locks"
     encrypt        = true
-
-    depends_on = [
-      aws_s3_bucket.terraform_state
-    ]
   }
   required_providers {
     aws = {
